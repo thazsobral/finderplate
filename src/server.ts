@@ -8,9 +8,9 @@ const HOST = "http://localhost";
 app.use(express.json());
 
 router.get("/", (request: Request, response: Response) => {
-    response.json({ message: "Hi, I'm Finderplate." });
-})
+  response.json({ message: "Hi, I'm Finderplate." });
+});
 
 app.use(router);
 
-app.listen(PORT, () => console.log(`I'm running at ${HOST}:${PORT}.`) )
+app.listen(PORT, () => console.log(`😎 I'm running at ${HOST}:${PORT}.`));
