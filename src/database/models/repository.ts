@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import sequelize from "../connection";
 
-const Repository = sequelize.define("repository", {
+export const Repository = sequelize.define("repository", {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -32,7 +32,6 @@ const Repository = sequelize.define("repository", {
   topics: DataTypes.ARRAY(DataTypes.STRING),
 });
 
-export inferface RepoAddModel {
+export interface RepoAddModel {
   html_url: string
-  
 }
