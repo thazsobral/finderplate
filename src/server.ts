@@ -1,52 +1,35 @@
-// import express, { Router, Request, Response, Application } from "express";
-// import Repository from "./database/repository";
+import express, { Application } from "express";
+import cors from "cors";
+import morgan from "morgan";
+// import { User } from "../database/models/user.js";
 
-// const app: Application = express();
-// const router = Router();
-// const HOST = "http://localhost";
+class App {
+  express: Application;
 
-// app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-
-// router.get("/", (request: Request, response: Response) => {
-//   response.json({ message: "Hi, I'm Finderplate." });
-// });
-
-// app.use(router);
-
-// try {
-//   sequelize
-//     .authenticate()
-//     .then(() => {
-//       console.log("Connection has been established successfully.");
-//     })
-//     .catch((error) => {
-//       console.error("Unable to connect to the database:", error);
-//     });
-
-//   Repository.sync()
-//     .then(() => {
-//       console.log("All models were synchronized successfully.");
-//     })
-//     .catch((error) => {
-//       console.error(error.message);
-//     });
-//   app.listen(PORT, () => console.log(`😎 I'm running at ${HOST}:${PORT}.`));
-// } catch (error: any) {
-//   console.error(`Error ocurred: ${error.message}`);
-// }
-import App from "./api/app";
-import sequelize from "./database/connection";
-
-const PORT = 3333;
-
-App.listen(PORT, async () => {
-  console.log(`😎 I'm running at ${PORT}`);
-  try {
-    await sequelize.authenticate();
-    console.log("Connection has been established successfully.");
-  } catch (error) {
-    console.error("Unable to connect to the database:", error);
+  constructor() {
+    this.express = express();
+    this.middleware();
+    this.routes();
   }
-  // await sequelize.sync();
-});
+
+  middleware() {
+    this.express.use(cors());
+    this.express.use(express.json());
+    this.express.use(morgan("dev"));
+  }
+
+  routes() {
+    this.express.use("/", (req, res) =>
+      res.json({ msg: "Hi, I'm Finderplate." })
+    );
+    this.express.use("/user", async (req, res) => {
+      // await User.find({});
+    });
+  }
+
+  listen(port: number, cb: () => void) {
+    this.express.listen(port, cb);
+  }
+}
+
+export default new App();
