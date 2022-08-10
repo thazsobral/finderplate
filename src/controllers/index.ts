@@ -1,5 +1,4 @@
 import database from "../database/models";
-import { RepositoryAttributes } from "../database/models/repository";
 
 // repository structure
 // id: string;
