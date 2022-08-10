@@ -1,4 +1,5 @@
-import { response, Router } from "express";
+import { Router } from "express";
+import repositoryController from "../controllers";
 
 const router = Router();
 
@@ -11,7 +12,7 @@ router.get("/repositories", (request, response) => {
 });
 
 router.get("/repository/:id", (request, response) => {
-    response.send(`Any repository ${request.params.id}`);
+    response.send(repositoryController.getRepository(request.params.id));
 });
 
 export default router;
