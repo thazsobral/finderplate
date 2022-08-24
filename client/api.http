@@ -3,9 +3,9 @@ POST http://localhost:3000/repo HTTP/1.1
 content-type: application/json
 
 {
-    "name": "repo-vitinho",
+    "name": "repo-thalinho",
     "url": "http://www.git.repo-test",
-    "author": "vitor",
+    "author": "thalinho",
     "topics": ["http", "test"]
 }
 
@@ -14,10 +14,10 @@ content-type: application/json
 GET http://localhost:3000/repos HTTP/1.1
 
 ### FindeOne
-GET http://localhost:3000/repo/1 HTTP/1.1
+GET http://localhost:3000/repo/de1dd3e4-d96f-42a0-af93-02f57cb8b6f1 HTTP/1.1
 
 ### Update
-PUT http://localhost:3000/repo/1 HTTP/1.1
+PUT http://localhost:3000/repo/7ab7e644-c3df-4e2f-b698-3778c6303756 HTTP/1.1
 content-type: application/json
 
 {
