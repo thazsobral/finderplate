@@ -1,16 +1,14 @@
-import express from 'express';
+import express, { json } from 'express';
+import { db } from './database/db';
+import { router } from './api/routes';
+
 const app = express();
-const port = process.env.PORT || 3000;
-import db from './database/models';
-// import {users} from './seeders/users';
-// import {projects} from './seeders/projects'
-// import {projectassignments} from './seeders/projectassignments'
-import router from "./routes";
+const port = process.env.API_PORT || 3000;
 
-app.use("/", router);
+app.use(json())
+app.use(router)
 
-db.sequelize.sync().then(() => {
-    app.listen(port, () => {
-        console.log(`App listening on port ${port}`)
-    })
+app.listen(port, async () => {
+    await db.sync()
+    console.log(`App listening on port ${port}`)
 })

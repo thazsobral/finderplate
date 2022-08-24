@@ -1,0 +1,28 @@
+### Create
+POST http://localhost:3000/repo HTTP/1.1
+content-type: application/json
+
+{
+    "name": "repo-vitinho",
+    "url": "http://www.git.repo-test",
+    "author": "vitor",
+    "topics": ["http", "test"]
+}
+
+### FindeAll
+
+GET http://localhost:3000/repos HTTP/1.1
+
+### FindeOne
+GET http://localhost:3000/repo/1 HTTP/1.1
+
+### Update
+PUT http://localhost:3000/repo/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "repo-thaz"
+}
+
+### Delete
+DELETE http://localhost:3000/repo/2 HTTP/1.1
