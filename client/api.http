@@ -3,10 +3,7 @@ POST http://localhost:3000/repo HTTP/1.1
 content-type: application/json
 
 {
-    "name": "repo-thalinho",
-    "url": "http://www.git.repo-test",
-    "author": "thalinho",
-    "topics": ["http", "test"]
+    "url": "https://github.com/othneildrew/Best-README-Template"
 }
 
 ### FindeAll

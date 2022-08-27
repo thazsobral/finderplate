@@ -1,10 +1,12 @@
 // id: integer
-// name: string
-// url: string
-// author: string
-// topics: string[]
+// name: string -- data.name
+// url: string -- data.html_url
+// author: string -- data.owner.login
+// topics: string[] -- data.topics
 
 import { Request, Response } from "express";
+import axios from "axios";
+
 import { RepositoryModel } from "../../database/models/repository-model";
 
 class RepositoryController {
@@ -30,7 +32,19 @@ class RepositoryController {
     };
     
     async create(request: Request, response: Response) {
-        const { name, url, author, topics } = request.body;
+        const { url } = request.body;
+
+        const requestForURL = url.replace("https://github.com/", "https://api.github.com/repos/");
+        const repositoryData = await axios.get(requestForURL);
+
+        const {
+            name,
+            url: html_url,
+            topics
+        } = repositoryData.data;
+
+        const author = repositoryData.data.owner.login;
+
         const repository = await RepositoryModel.create({
             name,
             url,
