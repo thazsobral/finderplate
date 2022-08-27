@@ -3,8 +3,8 @@ import { db } from "../db";
 
 export const RepositoryModel = db.define("repository", {
   id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
+    type: DataTypes.UUID,
+    defaultValue: DataTypes.UUIDV4,
     allowNull: false,
     primaryKey: true,
   },
