@@ -18,17 +18,41 @@ class RepositoryController {
         : response.status(204).send();
     };
 
+    async findTopics(request: Request, response: Response) {
+        const topics = [];
+        topics.push(request.query.topics);
+        
+        const queryParams = topics.flat(Infinity);
+
+        let query = "SELECT * FROM repositories WHERE";
+        
+        queryParams.forEach( (item, id) => {
+            if (id !== 0) {
+                query = query.concat(" OR");
+            }
+            query = query.concat(` '${item}' = ANY(topics)`);
+        });
+
+        console.log(query);
+
+        const repositories = await RepositoryModel.sequelize.query(query);
+
+        return repositories
+        ? response.status(200).json(repositories[0])
+        : response.status(204).send();
+    };
+
     async findOne(request: Request, response: Response) {
-        const { id } = request.params
+        const { id } = request.params;
         const repository = await RepositoryModel.findOne({
             where: {
                 id
             }
-        })
+        });
 
         return repository
         ? response.status(200).json(repository)
-        : response.status(204).send()
+        : response.status(204).send();
     };
     
     async create(request: Request, response: Response) {
@@ -72,7 +96,7 @@ class RepositoryController {
             where: {
                 id
             }
-        })
+        });
 
         return response.status(204).send();
     }
