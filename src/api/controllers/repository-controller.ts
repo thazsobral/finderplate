@@ -15,19 +15,19 @@ class RepositoryController {
         const repositories = await RepositoryModel.findAll();
 
         return repositories.length > 0
-        ? response.status(200).json(repositories)
-        : response.status(204).send();
+            ? response.status(200).json(repositories)
+            : response.status(204).send();
     };
 
     async findTopics(request: Request, response: Response) {
         const topics = [];
         topics.push(request.query.topics);
-        
+
         const queryParams = topics.flat(Infinity);
 
         let query = "SELECT * FROM repositories WHERE";
-        
-        queryParams.forEach( (item, id) => {
+
+        queryParams.forEach((item, id) => {
             if (id !== 0) {
                 query = query.concat(" OR");
             }
@@ -37,8 +37,8 @@ class RepositoryController {
         const repositories = await RepositoryModel.sequelize.query(query);
 
         return repositories
-        ? response.status(200).json(repositories[0])
-        : response.status(204).send();
+            ? response.status(200).json(repositories[0])
+            : response.status(204).send();
     };
 
     async findOne(request: Request, response: Response) {
@@ -50,10 +50,10 @@ class RepositoryController {
         });
 
         return repository
-        ? response.status(200).json(repository)
-        : response.status(204).send();
+            ? response.status(200).json(repository)
+            : response.status(204).send();
     };
-    
+
     async create(request: Request, response: Response) {
         const { url } = request.body;
 
@@ -77,7 +77,7 @@ class RepositoryController {
 
         return response.status(201).json(repository);
     };
-    
+
     async update(request: Request, response: Response) {
         const { id } = request.params;
         await RepositoryModel.update(request.body, {
@@ -88,7 +88,7 @@ class RepositoryController {
 
         return response.status(204).send();
     };
-    
+
     async destroy(request: Request, response: Response) {
         const { id } = request.params;
         await RepositoryModel.destroy({
