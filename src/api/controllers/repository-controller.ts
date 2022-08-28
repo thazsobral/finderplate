@@ -1,7 +1,8 @@
+// data-api         -- data-api-github
 // id: integer
-// name: string -- data.name
-// url: string -- data.html_url
-// author: string -- data.owner.login
+// name: string     -- data.name
+// url: string      -- data.html_url
+// author: string   -- data.owner.login
 // topics: string[] -- data.topics
 
 import { Request, Response } from "express";
@@ -10,7 +11,7 @@ import axios from "axios";
 import { RepositoryModel } from "../../database/models/repository-model";
 
 class RepositoryController {
-    async findAll(request: Request, response: Response) {
+    async findAll(_: Request, response: Response) {
         const repositories = await RepositoryModel.findAll();
 
         return repositories.length > 0
@@ -32,8 +33,6 @@ class RepositoryController {
             }
             query = query.concat(` '${item}' = ANY(topics)`);
         });
-
-        console.log(query);
 
         const repositories = await RepositoryModel.sequelize.query(query);
 
