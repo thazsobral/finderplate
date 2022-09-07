@@ -1,6 +1,9 @@
 import express, { json } from 'express';
+import * as dotEnv from "dotenv"
+dotEnv.config()
 import { db } from './database/db';
 import { router } from './api/routes';
+
 
 const app = express();
 const port = process.env.PORT || 3000;
