@@ -17,7 +17,7 @@ class RepositoryController {
         return repositories.length > 0
             ? response.status(200).json(repositories)
             : response.status(204).send();
-    };
+    }
 
     async findTopics(request: Request, response: Response) {
         const topics = [];
@@ -39,7 +39,20 @@ class RepositoryController {
         return repositories
             ? response.status(200).json(repositories[0])
             : response.status(204).send();
-    };
+    }
+
+    async findAuthors(request: Request, response: Response) {
+        const { author } = request.params;
+        const repository = await RepositoryModel.findAll({
+            where: {
+                author
+            }
+        });
+
+        return repository
+            ? response.status(200).json(repository)
+            : response.status(204).send();
+    }
 
     async findOne(request: Request, response: Response) {
         const { id } = request.params;
@@ -52,7 +65,7 @@ class RepositoryController {
         return repository
             ? response.status(200).json(repository)
             : response.status(204).send();
-    };
+    }
 
     async create(request: Request, response: Response) {
         const { url } = request.body;
@@ -76,7 +89,7 @@ class RepositoryController {
         });
 
         return response.status(201).json(repository);
-    };
+    }
 
     async update(request: Request, response: Response) {
         const { id } = request.params;
@@ -87,7 +100,7 @@ class RepositoryController {
         });
 
         return response.status(204).send();
-    };
+    }
 
     async destroy(request: Request, response: Response) {
         const { id } = request.params;
@@ -99,6 +112,6 @@ class RepositoryController {
 
         return response.status(204).send();
     }
-};
+}
 
 export default new RepositoryController();

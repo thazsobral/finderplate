@@ -3,7 +3,7 @@ POST http://localhost:3000/repo HTTP/1.1
 content-type: application/json
 
 {
-    "name": "https://github.com/othneildrew/Best-README-Template"
+    "url": "https://github.com/readthedocs/template"
 }
 
 ### FindeAll
@@ -12,6 +12,9 @@ GET http://localhost:3000/repos HTTP/1.1
 ### FindeTopics
 # GET http://localhost:3000/repos/topics/?topics=readme&topics=arm HTTP/1.1
 GET http://localhost:3000/repos/topics/?topics=readme HTTP/1.1
+
+### FindeAuthors
+GET http://localhost:3000/repos/author/sveltejs HTTP/1.1
 
 ### FindeOne
 GET http://localhost:3000/repo/de1dd3e4-d96f-42a0-af93-02f57cb8b6f1 HTTP/1.1
