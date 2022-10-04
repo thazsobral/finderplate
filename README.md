@@ -27,5 +27,3 @@ flowchart TD
     ``` shell
     npm run dev
     ```
-## Qual a licença?
-O projeto utiliza a [licença Apache](license).
