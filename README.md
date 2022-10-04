@@ -7,7 +7,9 @@ Dessa forma, você poderá rapidamente começar seu projeto.
 ## Como funciona?
 ```mermaid
 flowchart TD
-	A[Usuário] --> B[Finderplate] <-->	C[Github]
+	A[Usuário] --"url do repositório"--> B[Finderplate] 
+    B[Finderplate] --"consulta o repositório"--> C[Github]
+    C[Github] --"dados do repositório"--> B[Finderplate]
 ```
 
 ## Como usar?
